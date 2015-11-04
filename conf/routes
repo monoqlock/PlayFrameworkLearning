@@ -10,3 +10,12 @@ GET        /assets/*file        controllers.Assets.at(path="/public", file)
 
 GET        /sample1             controllers.SampleController.sample1
 GET        /sample2             controllers.SampleController.sample2
+GET        /redirect1           controllers.SampleController.redirect1
+GET        /redirect2           controllers.SampleController.redirect2
+
+# 動的にもできる (ex. http://localhost:9000/sample3/2000)
+GET        /sample3/:id         controllers.SampleController.sample3(id:Long)
+# http://localhost:9000/sample3?id=1000
+GET        /sample3             controllers.SampleController.sample3(id:Long)
+# ワイルドカード
+GET        /sample4/*path       controllers.SampleController.sample4(path)
