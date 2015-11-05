@@ -21,7 +21,8 @@ object SampleController extends Controller {
 //  }
 
   def sample2 = Action {
-    Ok(views.html.index("Sample Contoroller#sample2"))
+//    Ok(views.html.index("Sample Contoroller#sample2"))
+    Redirect(routes.SampleController.sample1)
   }
 
   def redirect1 = Action {
@@ -38,6 +39,27 @@ object SampleController extends Controller {
 
   def sample4(path: String) = Action {
     Ok(views.html.index(path))
+  }
+
+  // 引数に定数をとる
+  def sample5(fixedValue: String) = Action {
+    println("fixedValue=" + fixedValue)
+    Ok(views.html.index("fixedValue: " + fixedValue))
+  }
+
+  // 引数にデフォルト値をとる
+  def sample6(defaultValue: Int) = Action {
+    println("defaultValue=" + defaultValue)
+    Ok(views.html.index("defaultValue: " + defaultValue))
+  }
+
+  def sample7(optValue: Option[String]) = Action {
+    println("OptionValue=" + optValue)
+    val res = optValue match {
+      case Some(opt) => opt
+      case None => "nothing"
+    }
+    Ok(views.html.index("optValue: " + res))
   }
 
 }

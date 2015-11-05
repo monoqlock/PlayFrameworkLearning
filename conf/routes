@@ -3,19 +3,34 @@
 # ~~~~
 
 # Home page
-GET        /                    controllers.Application.index
+GET        /                     controllers.Application.index
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file        controllers.Assets.at(path="/public", file)
+GET        /assets/*file         controllers.Assets.at(path="/public", file)
 
-GET        /sample1             controllers.SampleController.sample1
-GET        /sample2             controllers.SampleController.sample2
-GET        /redirect1           controllers.SampleController.redirect1
-GET        /redirect2           controllers.SampleController.redirect2
+GET        /sample1              controllers.SampleController.sample1
+GET        /sample2              controllers.SampleController.sample2
+GET        /redirect1            controllers.SampleController.redirect1
+GET        /redirect2            controllers.SampleController.redirect2
 
 # 動的にもできる (ex. http://localhost:9000/sample3/2000)
-GET        /sample3/:id         controllers.SampleController.sample3(id:Long)
+GET        /sample3/:id          controllers.SampleController.sample3(id:Long)
 # http://localhost:9000/sample3?id=1000
-GET        /sample3             controllers.SampleController.sample3(id:Long)
+GET        /sample3              controllers.SampleController.sample3(id:Long)
 # ワイルドカード
-GET        /sample4/*path       controllers.SampleController.sample4(path)
+GET        /sample4/*path        controllers.SampleController.sample4(path)
+
+# 引数に定数を指定
+GET        /sample5              controllers.SampleController.sample5(fixedValue = "fixed")
+# 引数にデフォルト値を指定
+GET        /sample6              controllers.SampleController.sample6(defaultValue: Int ?= 1)
+# 引数でoption型を使用する
+GET        /sample7              controllers.SampleController.sample7(optValue: Option[String])
+
+# セッション
+GET        /saveSession          controllers.SessionController.setSession
+GET        /readSession          controllers.SessionController.getSesstion
+
+# フラッシュスコープ
+GET        /saveFlash            controllers.SessionController.setFlash
+GET        /readFlash             controllers.SessionController.getFlash
